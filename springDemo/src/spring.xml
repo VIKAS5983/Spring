@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<bean id="triangle" class="org.vikas.Triangle">
+		<constructor-arg value="LijName"></constructor-arg>
+		<constructor-arg value="20"></constructor-arg> 
+	<!-- Based on the number of the constructor-arg nodes the constructor will get called. 
+	    type, index  parameters are optional in the constructor-arg node. 
+	    It would be usefull in-case of multiple parameters constructor having same type. 	
+	    -->
+		
+		<property name="type" value="Quilateral"/>
+
+
+		
+	</bean>
+
+</beans>
