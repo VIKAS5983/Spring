@@ -1,7 +1,7 @@
 package org.vikas;
 
 public class Triangle {
-	private String type;
+/*	private String type;
 	private int height;
 	
 	//Using the constructor injection in spring.xml we are setting the name of the triangle 
@@ -31,7 +31,41 @@ public class Triangle {
 	public void setType(String type){
 		this.type=type;
 	}
+	
 	public void draw(){
 		System.out.println(type+" Triangle Drawn. Height: "+ height );
 	}
+	*/
+	
+	// Object injection
+	
+	private Point pointA;
+	private Point pointB;
+	private Point pointC;
+	// We will use spring to initialize all the three points 
+
+	public Point getPointB() {
+		return pointB;
+	}
+	public void setPointB(Point pointB) {
+		this.pointB = pointB;
+	}
+	public Point getPointA() {
+		return pointA;
+	}
+	public void setPointA(Point pointA) {
+		this.pointA = pointA;
+	}
+	public Point getPointC() {
+		return pointC;
+	}
+	public void setPointC(Point pointC) {
+		this.pointC = pointC;
+	}
+		
+	public void draw(){
+		System.out.println("Points are\n pointA:"+ pointA+"\n pointB:"+ pointB+"\n pointC:"+ pointC);
+	}
+
+
 }

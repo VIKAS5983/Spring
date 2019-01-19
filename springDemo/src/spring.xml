@@ -3,18 +3,35 @@
 
 <beans>
 
-	<bean id="triangle" class="org.vikas.Triangle">
+<!-- 	<bean id="triangle" class="org.vikas.Triangle">
 		<constructor-arg value="LijName"></constructor-arg>
 		<constructor-arg value="20"></constructor-arg> 
-	<!-- Based on the number of the constructor-arg nodes the constructor will get called. 
+	Based on the number of the constructor-arg nodes the constructor will get called. 
 	    type, index  parameters are optional in the constructor-arg node. 
 	    It would be usefull in-case of multiple parameters constructor having same type. 	
-	    -->
-		
+	   
 		<property name="type" value="Quilateral"/>
-
-
-		
 	</bean>
-
+ -->
+ 
+ <!-- Object injection  -->
+ <bean id="triangle" class="org.vikas.Triangle">
+ 	<property name="pointA" ref="ZeroPoint"></property>
+ 	<property name="pointB" ref="OnePoint"></property>
+ 	<property name="pointC" ref="TwoPoint"></property>
+ 	
+ </bean>
+ 
+ 	<bean name="ZeroPoint" class="org.vikas.Point" >
+ 		<property name="x" value="0"></property>
+ 		<property name="y" value="-2"></property>
+ 	</bean>
+ 	 <bean name="OnePoint" class="org.vikas.Point">
+ 		<property name="x" value="1"></property>
+ 		<property name="y" value="0"></property>
+ 	</bean>
+ 	 <bean name="TwoPoint" class="org.vikas.Point" >
+ 		<property name="x" value="2"></property>
+ 		<property name="y" value="1"></property>
+ 	</bean>
 </beans>
