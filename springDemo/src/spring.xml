@@ -16,22 +16,39 @@
  
  <!-- Object injection  -->
  <bean id="triangle" class="org.vikas.Triangle">
- 	<property name="pointA" ref="ZeroPoint"></property>
- 	<property name="pointB" ref="OnePoint"></property>
- 	<property name="pointC" ref="TwoPoint"></property>
+ 	
+ 	<!-- ref attribute generally matches ref based on id, name ... etc. To restrict the ref only to id we can 
+ 	make use of idref node inside the property node which would throw exception in-case of no id ref found  -->
+ 	
+ 	<!--  id ref is not working in my environment for some reason. This is procedure to make use of it-->
+<!--  	<property name="pointA">
+ 		<idref=ZeroPoint/>
+ 	</property>
+ --> 	
+ 	<property name="pointA" ref="ZeroPoint"/>
+ 	<!-- Innear Beans: Inner beans doesn't need any name as it would be only accessible from the parent property
+ 	 therefore parent property node doesn't need any ref attribute  -->
+ 	<property name="pointB">
+ 	 	 <bean class="org.vikas.Point">
+ 			<property name="x" value="1"></property>
+ 			<property name="y" value="0"></property>
+ 		</bean>
+ 	</property>
+ 	
+ 	<property name="pointC" >
+ 	 	 <bean name="TwoPoint" class="org.vikas.Point" >
+ 			<property name="x" value="2"></property>
+ 			<property name="y" value="1"></property>
+ 		</bean>
+ 	</property>
  	
  </bean>
  
- 	<bean name="ZeroPoint" class="org.vikas.Point" >
+ 	<bean id="ZeroPoint" class="org.vikas.Point" >
  		<property name="x" value="0"></property>
  		<property name="y" value="-2"></property>
  	</bean>
- 	 <bean name="OnePoint" class="org.vikas.Point">
- 		<property name="x" value="1"></property>
- 		<property name="y" value="0"></property>
- 	</bean>
- 	 <bean name="TwoPoint" class="org.vikas.Point" >
- 		<property name="x" value="2"></property>
- 		<property name="y" value="1"></property>
- 	</bean>
+ 	
+ 	<!-- Alias tag can be used to access the bean with multiple names  -->
+ 	<alias name="triangle" alias="triangle-alias"/>
 </beans>
