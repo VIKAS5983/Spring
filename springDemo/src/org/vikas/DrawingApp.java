@@ -3,6 +3,7 @@ package org.vikas;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -30,7 +31,8 @@ public class DrawingApp {
 		
 
 		//In this case spring.xml should be avaiable at the classpath under src folder
-		ApplicationContext context=new ClassPathXmlApplicationContext("spring2.xml");
+		AbstractApplicationContext context=new ClassPathXmlApplicationContext("spring2.xml");
+		context.registerShutdownHook();
 		Triangle tr=(Triangle)context.getBean("triangle2");
 
 		tr.draw();

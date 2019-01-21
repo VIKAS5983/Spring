@@ -2,13 +2,17 @@ package org.vikas;
 
 import java.util.List;
 
+import javax.security.auth.DestroyFailedException;
+import javax.security.auth.Destroyable;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
 
-public class Triangle implements ApplicationContextAware, BeanNameAware{
+public class Triangle implements ApplicationContextAware, BeanNameAware,InitializingBean,Destroyable{
 
 	// Object injection
 	
@@ -75,6 +79,29 @@ public class Triangle implements ApplicationContextAware, BeanNameAware{
 	public void setBeanName(String arg0) {
 
 			System.out.println("Bean name is "+ arg0);		
+	}
+	
+	 //This would get called only when the abstractapplication context is registered hook up with the shutdown
+	//Same can be acheived using the annotatoins. 
+	@Override
+	public void destroy() throws DestroyFailedException {
+
+		System.out.println("DEstroyed the bean. This is called after deploying the bean");
+	}
+	
+	
+	@Override
+	public boolean isDestroyed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	//This would get called after loading the properties to the bean
+	//Same can be acheived using the annotatoins. 
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("This is getting called after loaing the properties of the beans i.e after bean initialization");	
+	
 	}
 
 
