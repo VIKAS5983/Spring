@@ -2,43 +2,14 @@ package org.vikas;
 
 import java.util.List;
 
-public class Triangle {
-/*	private String type;
-	private int height;
-	
-	//Using the constructor injection in spring.xml we are setting the name of the triangle 
-	public Triangle(String type,int height){
-		this.type=type;
-		this.height=height;
-	}
-	
-	public Triangle(String type){
-		this.type=type;
-	}
-	
-	//
-	public Triangle(int height){
-		this.height=height;
-	}
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.web.context.WebApplicationContext;
 
-	public int getHeight(){
-		return height;
-	}
-	public String getType(){
-		
-		return type;
-	}
-	
-	//Using setter injection we are setting the type of the Triangle 
-	public void setType(String type){
-		this.type=type;
-	}
-	
-	public void draw(){
-		System.out.println(type+" Triangle Drawn. Height: "+ height );
-	}
-	*/
-	
+public class Triangle implements ApplicationContextAware, BeanNameAware{
+
 	// Object injection
 	
 	private Point pointA;
@@ -47,6 +18,7 @@ public class Triangle {
 	
 	private List<Point> points;
 	// We will use spring to initialize all the three points 
+	private ApplicationContext context;
 
 	public Point getPointB() {
 		return pointB;
@@ -79,6 +51,30 @@ public class Triangle {
 	}
 	public void setPoints(List<Point> points) {
 		this.points = points;
+	}
+
+
+	//Way to get the reference for context of the current object
+	//This helps us to get the prototype based inner beans for the single top parent class bean 
+	// In this case Triangle is a singleton bean and pointA, pointB, pointC are the prototype beans
+	// Using context we can get the different prototyped beans initialze the inner attributes for 
+	//every request of the Triangle
+	
+	//This method gets called when triangle bean get loaded to the container 
+	@Override
+	public void setApplicationContext(ApplicationContext arg0)
+			throws BeansException {
+
+		this.context=arg0;
+	}
+	
+	//Similar to above we can get the bean from using the beanNameAware interface 
+	//which internally calls the setBeanNamemethod 
+	
+	@Override
+	public void setBeanName(String arg0) {
+
+			System.out.println("Bean name is "+ arg0);		
 	}
 
 

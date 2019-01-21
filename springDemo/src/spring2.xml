@@ -10,20 +10,48 @@
 	    2) constructor: It is same as byName instead of setter injection it uses constructor injection 
 		-->	
 		
+		<!-- we can say abstract=true to inform not to create the bean for the parentTriangle, others can make use of this  -->
+	<bean id="parentTriangle" class="org.vikas.Triangle" abstract="true">
+	<property name="pointA" ref="pointA"></property>
+	</bean>
+	
 		<!-- scope as prototype, so it creates new object bean for every request.Default is singleton -->
-	 <bean id="triangle" class="org.vikas.Triangle" autowire="byName" scope="prototype">
-	 	<!-- Collections use in beans -->
-<!-- 	 		
-	 	<property name="points">
-			<list>
-			 	<ref bean="Point1"/>
-			 	<ref bean="Point2"/>
-			 	<ref bean="Point3"/>
-			</list>
-		</property>
- -->			
-	 	
+	 <bean id="triangle" class="org.vikas.Triangle" scope="prototype" >
+	 	 	<property name="pointB" ref="pointB"/>	 	 	
 	 </bean>
+		
+	
+		
+	 <bean id="triangle1" class="org.vikas.Triangle" parent="parentTriangle" >
+	 	 	<property name="pointB" ref="pointB"/>
+	 	 	
+	 	 	
+	 </bean>
+	 
+	 <!-- inherit the bean properties and override if it matches the name or id  -->
+	 <bean id="triangle2" class="org.vikas.Triangle"  parent="parentTriangle" 	>
+	 	 	<property name="pointB" ref="pointB"/>
+	 	<property name="pointC" ref="pointC"/>
+	 
+	 </bean>
+	
+	<bean id="triangles11" class="org.vikas.Triangle" scope="prototype" >
+	 	 	<property name="points">
+	 	 		<list>
+	 	 			<ref bean="pointA"></ref>
+	 	 		</list>
+	 	 	</property>	 	 	
+	 </bean>
+	
+	<!--  We generally override the collections if we say merge=true for the list  it gonna merge both the collections -->
+	 <bean id="triangle21" class="org.vikas.Triangle" scope="prototype" parent="triangle11" >
+	 	 	<property name="points">
+	 	 		<list merge="true">
+	 	 			<ref bean="pointB"></ref>
+	 	 		</list>
+	 	 	</property>	 	 	
+	 </bean>
+	 
 	 
  	<bean id="pointA" class="org.vikas.Point" >
  		<property name="x" value="0"></property>
