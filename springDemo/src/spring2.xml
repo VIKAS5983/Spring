@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<!--  autowire can work in three ways 
+		1) byName: It matches the name in the class with any of the name in the beans list 
+		2) byType: It matches the type of variable with the type of beans and assigns it. 
+					It works only if only attribute of that type exists in the class and beans list
+	    2) constructor: It is same as byName instead of setter injection it uses constructor injection 
+		-->	
+		
+		<!-- scope as prototype, so it creates new object bean for every request.Default is singleton -->
+	 <bean id="triangle" class="org.vikas.Triangle" autowire="byName" scope="prototype">
+	 	<!-- Collections use in beans -->
+<!-- 	 		
+	 	<property name="points">
+			<list>
+			 	<ref bean="Point1"/>
+			 	<ref bean="Point2"/>
+			 	<ref bean="Point3"/>
+			</list>
+		</property>
+ -->			
+	 	
+	 </bean>
+	 
+ 	<bean id="pointA" class="org.vikas.Point" >
+ 		<property name="x" value="0"></property>
+ 		<property name="y" value="-2"></property>
+ 	</bean>
+
+ 	<bean id="pointB" class="org.vikas.Point" >
+ 		<property name="x" value="2"></property>
+ 		<property name="y" value="-2"></property>
+ 	</bean>
+ 	<bean id="pointC" class="org.vikas.Point" >
+ 		<property name="x" value="1"></property>
+ 		<property name="y" value="-2"></property>
+ 	</bean>
+ 	
+ 	<!-- Alias tag can be used to access the bean with multiple names  --> 
+</beans>

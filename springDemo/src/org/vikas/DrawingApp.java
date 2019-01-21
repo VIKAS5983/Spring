@@ -30,8 +30,8 @@ public class DrawingApp {
 		
 
 		//In this case spring.xml should be avaiable at the classpath under src folder
-		ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
-		Triangle tr=(Triangle)context.getBean("triangle-alias");
+		ApplicationContext context=new ClassPathXmlApplicationContext("spring2.xml");
+		Triangle tr=(Triangle)context.getBean("triangle");
 
 		tr.draw();
 	}

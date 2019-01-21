@@ -1,5 +1,7 @@
 package org.vikas;
 
+import java.util.List;
+
 public class Triangle {
 /*	private String type;
 	private int height;
@@ -42,6 +44,8 @@ public class Triangle {
 	private Point pointA;
 	private Point pointB;
 	private Point pointC;
+	
+	private List<Point> points;
 	// We will use spring to initialize all the three points 
 
 	public Point getPointB() {
@@ -65,6 +69,16 @@ public class Triangle {
 		
 	public void draw(){
 		System.out.println("Points are\n pointA:"+ pointA+"\n pointB:"+ pointB+"\n pointC:"+ pointC);
+		
+		for(int i=0;i<points.size();i++){
+			System.out.print(points.get(i).toString()+ " ");
+		}
+	}
+	public List<Point> getPoints() {
+		return points;
+	}
+	public void setPoints(List<Point> points) {
+		this.points = points;
 	}
 
 
