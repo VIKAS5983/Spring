@@ -31,7 +31,7 @@
 	 <!-- inherit the bean properties and override if it matches the name or id  -->
 	 <bean id="triangle2" class="org.vikas.Triangle"  parent="parentTriangle" 	>
 	 	 	<property name="pointB" ref="pointB"/>
-	 	<property name="pointC" ref="pointC"/>
+	 		<property name="pointC" ref="pointC"/>
 	 
 	 </bean>
 	
@@ -54,8 +54,8 @@
 	 
 	 
  	<bean id="pointA" class="org.vikas.Point" >
- 		<property name="x" value="0"></property>
- 		<property name="y" value="-2"></property>
+ 		<property name="x" value="${pointA.pointX}"></property>
+ 		<property name="y" value="${pointA.pointY}"></property>
  	</bean>
 
  	<bean id="pointB" class="org.vikas.Point" >
@@ -66,6 +66,21 @@
  		<property name="x" value="1"></property>
  		<property name="y" value="-2"></property>
  	</bean>
+ 	
+ 	<!-- Spring detects the PostProcessir bean class on its own based in the implements made to the class. No need of addition attributes -->
+ 	<bean class="org.vikas.DisplayBeanNamePostProcessor"/>
+ 	<!--  Same as the bean post processor-->
+ 	<bean class="org.vikas.myBeanFactoryPP"/>
+ 	
+ 	
+ 	<!-- This would look at the properties file and replace the ${} placeholders in the current spring.xml file 
+ 		 This gets executed before bean factory getting executed. So Bean factory sees after substitute values. 
+ 		 It assumes the properties file is in the same folder  -->
+ 	<bean class="org.springframwork.beans.factory.config.PropertyPlaceholderConfigurer" >
+ 			<property name="locations" value="pointsconfig.properties"></property>
+ 	</bean>
+ 	
+ 	
  	
  	<!-- Alias tag can be used to access the bean with multiple names  --> 
 </beans>
