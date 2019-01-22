@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+ 
+	 <bean id="triangle" class="org.vikas2.Triangle">
+	 	  	<property name="pointA" ref="pointA"/>
+	 	  	<property name="pointB" ref="pointB"/>
+	 	  	<property name="pointC" ref="pointC"/>
+	 	
+	 </bean>
+	 
+ 	 <bean id="pointA" class="org.vikas2.Point">
+		<property name="x" value="1"></property>
+		<property name="y" value="0"></property>
+	</bean>
+
+ 	 <bean id="pointB" class="org.vikas2.Point">
+		<property name="x" value="1"></property>
+		<property name="y" value="0"></property>
+ 	</bean>
+ 	
+ 	 <bean name="pointC" class="org.vikas2.Point" >
+		<property name="x" value="2"></property>
+		<property name="y" value="1"></property>
+	</bean>
+ 
+ 	<bean id="circle" class="org.vikas2.Circle">
+ 		<property name="center"  ref="pointB"/> 
+ 	</bean>
+ 	
+ </beans>
