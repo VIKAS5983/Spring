@@ -6,7 +6,13 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+//Replacement of the bean declaration in the spring.xml. This would result into a single bean only as below
+// 	<bean id="circle" class="org.vikas2.Circle">
+//	</bean>
+
+@Component
 public class Circle implements Shape {
 	
 	private Point center; 

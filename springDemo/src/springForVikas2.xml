@@ -31,11 +31,12 @@
 		<property name="y" value="1"></property>
 	</bean>
 
- 	<bean id="circle" class="org.vikas2.Circle">
+<!--  	<bean id="circle" class="org.vikas2.Circle">
  	</bean>
- 	
+ --> 	
  	<!--  Replacement of all the annotations beans  -->
  	<context:annotation-config/>
- 	
-<!--  	<bean class="org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver"></bean>
- --> </beans>
+ 	<context:component-scan base-package="org.vikas2"/>
+<!--  	<bean class="org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver"></bean>-->
+
+ </beans>
