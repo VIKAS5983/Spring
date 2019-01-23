@@ -17,11 +17,11 @@ public class DrawingApp {
 		AbstractApplicationContext context=new ClassPathXmlApplicationContext("springForVikas2.xml");		
 		Shape s1=(Shape)context.getBean("circle");
 		s1.draw();
-
-		Shape s2=(Shape)context.getBean("triangle");
+ 
+/*		Shape s2=(Shape)context.getBean("triangle");
 		s2.draw();
 
-		
+*/		
 	}
 
 }
