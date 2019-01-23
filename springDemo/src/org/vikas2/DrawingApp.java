@@ -14,7 +14,8 @@ public class DrawingApp {
 	public static void main(String args[]){
 				//This class doesn't know whether we are getting the circle or triangle class.
 				// We are just operating on the shape class
-		AbstractApplicationContext context=new ClassPathXmlApplicationContext("springForVikas2.xml");		
+		AbstractApplicationContext context=new ClassPathXmlApplicationContext("springForVikas2.xml");	
+		context.registerShutdownHook();
 		Shape s1=(Shape)context.getBean("circle");
 		s1.draw();
  

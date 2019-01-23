@@ -21,7 +21,7 @@
 		<property name="y" value="0"></property>
 	</bean>
 
-<!--  	 <bean id="pointB" class="org.vikas2.Point">
+	 <bean id="pointB" class="org.vikas2.Point">
 		<property name="x" value="1"></property>
 		<property name="y" value="0"></property>
  	</bean>
@@ -30,7 +30,7 @@
 		<property name="x" value="2"></property>
 		<property name="y" value="1"></property>
 	</bean>
- --> 
+
  	<bean id="circle" class="org.vikas2.Circle">
  	</bean>
  	
