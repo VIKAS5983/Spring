@@ -1,5 +1,7 @@
 package org.vikas2;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -19,6 +21,10 @@ public class DrawingApp {
 		Shape s1=(Shape)context.getBean("circle");
 		s1.draw();
  
+		//Using the message source to get the data from a properties 
+		String greeting=context.getMessage("greetings", null, "default greeting",null );
+		
+		System.out.println("Greeting loaded "+ greeting);
 /*		Shape s2=(Shape)context.getBean("triangle");
 		s2.draw();
 

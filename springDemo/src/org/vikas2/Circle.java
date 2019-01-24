@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 //Replacement of the bean declaration in the spring.xml. This would result into a single bean only as below
@@ -17,10 +18,33 @@ public class Circle implements Shape {
 	
 	private Point center; 
 	
+	// To access the MessageSource at the class level, we can use the autowired concept in this case. 
+	@Autowired
+	public MessageSource messageSource;
+	
+	
+	public MessageSource getMessageSource() {
+		return messageSource;
+	}
+
+	public void setMessageSource(MessageSource messageSource) {
+		this.messageSource = messageSource;
+	}
+
 	@Override
 	public void draw() {
 		System.out.println("Drawing Circle");
-		System.out.println("center point is: ("+ center.getX()+" , "+ center.getY()+")");
+		
+		System.out.println(messageSource.getMessage("drawing.circle", null,"Circle drawinDefault",null)+": ("+ center.getX()+" , "+ center.getY()+")");
+		
+		//System.out.println("point is " + center.getX()+" , "+center.getY());
+		//Above statement can be re-write as the below statement which can help in ignoreing the static content
+		//We are passing the parameters to the string and internally it would replace the placeholders 
+		//Localte parameter would be appending to the flie_name as myMessage_en.properties or myMessage_ar.properties
+		//properties would be loaded based on the locale name 
+		System.out.println(messageSource.getMessage("drawing.center",new Object[]{center.getX(),center.getY()},"center is ",null));
+
+		System.out.println("Greetin message: " + messageSource.getMessage("greetings", null, "DEfault greeints from circle", null));
 	}
 
 	public Point getCenter() {
