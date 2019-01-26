@@ -46,7 +46,27 @@ public class LoggingAspect {
  public void allGetters(){//this is dummy method
 	 
  }
- 
+
+ @Pointcut("execution(* com.vikas.model.Circle.*(..))") //We are defining the expression only once
+ public void allCircleMethods(){//this is dummy method
+	 
+ }
+
+ //This point cut would apply to all the methods of the circle 
+@Pointcut("within(com.vikas.model.Circle)")
+public void allCircleMethods2(){
+}
+
+//This pointcut would apply to all the subpackage classes contained	  inside the model package
+//@Pointcut("within(com.vikas.model..*)")-> 
+//Double dot indicate to apply the pointcut to all the sub-packages and classes of it too
+
+//This pointcut would apply to all the classes inside the model package
+@Pointcut("within(com.vikas.model.*)")
+public void allModelClasses(){
+}
+
+
  //Making use of point cut to call the adivice method before every getter
  @Before("allGetters()")
  public void pointCut1(){
@@ -58,5 +78,16 @@ public class LoggingAspect {
  public void pointCut2(){
 	 System.out.println("point Cut 2 Method is called ");
  }
+@Before("allCircleMethods()")
+ public void circleMethodLog(){
+	 System.out.println("CircleMethod is called");
+ }
  
+//This pointcut would be applied to all the methods which satify both the point cuts 
+//Implies getter method inside the Circle class only  
+@Before("allCircleMethods() && allGetters()")
+public void allGetersOfCricleClassMethods(){
+	System.out.println("All Getters of Circle Class Methods ");
+}
+
 }
