@@ -1,9 +1,15 @@
 package com.vikas.aspects;
 
+import org.aspectj.apache.bcel.generic.ReturnaddressType;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AdviceName;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.test.context.transaction.AfterTransaction;
 
 @Aspect
 public class LoggingAspect {
@@ -90,4 +96,58 @@ public void allGetersOfCricleClassMethods(){
 	System.out.println("All Getters of Circle Class Methods ");
 }
 
+//JointPoint can be made use to get the target class and name of the method 
+@Before("allCircleMethods()")
+public void printMethodName(JoinPoint jp){
+		
+	System.out.println("Method name is "+ jp.toString());
+	System.out.println("Class Objec is "+ jp.getTarget());//this will be a circle object
 }
+
+//It runs for all the methods with argument as a string 
+//@Before("args(String)")
+
+//This will say name is a string so it applies onlyf or the string arugment methods and passses the value to the method 
+@Before("args(name)")
+public void allMethodsWithStringArguments(String name){
+	System.out.println("Argument is " + name);
+}
+
+//This gonna execute for the methods with argument type string 
+//This advice would run all the time independent of completion of the method 
+// setter argument would be passed to this method 	
+@After("args(name)")
+public void allMethodsWithStringARgumentsAfter(String name){
+	System.out.println("After Aspect run "+ name);
+}
+
+//This would run only when the method is successfully completed
+@AfterReturning("args(name)")
+public void allMethodsWithStringARgumentsSuccessAfter(String name){
+	System.out.println("After successfully completing the Aspect run "+ name);
+}
+
+//This would run only when the method is successfully completed
+@AfterThrowing("args(name)")
+public void allMethodsWithStringArgumentsErrorAfter(String name){
+	System.out.println("An exception has been thrown");
+}
+
+//How to capture the object returned by the method from advice 
+//The below method gonna run for all the methods whoe input argument is string and retuns a string 
+@AfterReturning(pointcut="args(name)",returning="returnString")
+public void captureReturnObjectThrowAfterArugment(String name,String returnString){
+	System.out.println("Return string from the method is "+ returnString+" Argument passed is "+ name);
+}
+
+//change the above method as below to call the advice for all the return type
+//public void captureReturnObjectThrowAfterArugment(String name,Object returnString){
+
+@AfterThrowing(pointcut="args(name)",throwing="ex")
+public void throwingException(String name, RuntimeException ex){
+	System.out.println("Exception is " + ex);
+}
+
+
+}
+

@@ -15,8 +15,8 @@
 
 
 	<bean name="circle" class="com.vikas.model.Circle">
-		<property name="name" value="CircleName"></property>
-	</bean>
+<!-- 		<property name="name" value="CircleName"></property>
+ -->	</bean>
 
 	<bean name="triangle" class="com.vikas.model.Triangle">
 		<property name="name" value="Trianglename"></property>
