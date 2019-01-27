@@ -1,9 +1,12 @@
 package com.vikas.model;
 
+import com.vikas.aspects.Loggable;
+
 public class Circle {
 
 	private String name;
 
+	@Loggable
 	public String getName() {
 		return name;
 	}

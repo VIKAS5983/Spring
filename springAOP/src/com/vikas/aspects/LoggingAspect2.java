@@ -3,6 +3,7 @@ package com.vikas.aspects;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
@@ -37,5 +38,10 @@ public class LoggingAspect2 {
 		 return returnValue;
 	 }
 	
-	
+	 
+	 //This advice would apply to all the methods which has the @Loggable Annotation
+	 @Before("@annotation(com.vikas.aspects.Loggable)")
+	public void customAnnotationAdvice(){
+		System.out.println("Customer annotation");
+	}
 }
