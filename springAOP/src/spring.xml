@@ -26,4 +26,6 @@
 	</bean>
 	
 	<bean name="loggingAspect" class="com.vikas.aspects.LoggingAspect"></bean>
+	<bean name="loggingAspect2" class="com.vikas.aspects.LoggingAspect2"></bean>
+
 </beans>

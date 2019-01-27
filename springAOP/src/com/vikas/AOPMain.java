@@ -15,7 +15,7 @@ public class AOPMain {
 		ShapeService shp=ctx.getBean("shapeService",ShapeService.class);
 		shp.getCircle().setName("CircleName");
 
-		shp.getCircle().setNameAndReturn("CircleName");
+	//	shp.getCircle().setNameAndReturn("CircleName");
 	
 		//This is the core spring 
 		System.out.println(shp.getCircle().getName());
