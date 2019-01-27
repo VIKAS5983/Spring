@@ -44,4 +44,7 @@ public class LoggingAspect2 {
 	public void customAnnotationAdvice(){
 		System.out.println("Customer annotation");
 	}
+	 
+	 
+	 
 }
